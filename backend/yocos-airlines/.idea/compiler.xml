@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -9,9 +10,10 @@
         <module name="usuario-service" />
         <module name="pago-service" />
         <module name="reserva-service" />
-        <module name="api-gateway" />
         <module name="eureka-service" />
         <module name="vuelo-service" />
+        <module name="config-service" />
+        <module name="api-gateway" />
       </profile>
     </annotationProcessing>
   </component>
