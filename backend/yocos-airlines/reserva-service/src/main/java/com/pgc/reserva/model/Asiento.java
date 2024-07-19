@@ -16,12 +16,11 @@ public class Asiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "id_vuelo")
-    private Integer idVuelo;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "id_reserva")
     private Reserva reserva;
-    @Column(name = "numero_asiento")
-    private String numeroAsiento;
-    private String claseAsiento;
+
+    @Column(name = "id_precio_asiento")
+    private Integer idPrecioAsiento;
 }
