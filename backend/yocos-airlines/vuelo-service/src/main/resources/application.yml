@@ -18,6 +18,6 @@ spring:
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/usuario?currentSchema=employees
+    url: jdbc:postgresql://localhost:5432/vuelo_db
     username: postgres
     password: guerra2350
