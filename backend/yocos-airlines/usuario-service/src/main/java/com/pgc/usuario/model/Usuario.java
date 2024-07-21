@@ -21,8 +21,6 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String email;
     private String contrasenia;
-    @Column(name = "id_metodo_pago", nullable = false)
-    private Integer idMetodoPago;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_rol")
     private Rol rol;

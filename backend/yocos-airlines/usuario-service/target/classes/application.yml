@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8083
 
 spring:
   application:
@@ -18,6 +18,6 @@ spring:
 
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/usuario
+    url: jdbc:postgresql://localhost:5432/usuario_db
     username: postgres
     password: guerra2350
