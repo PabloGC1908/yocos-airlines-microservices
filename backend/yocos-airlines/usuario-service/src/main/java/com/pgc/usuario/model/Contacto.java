@@ -13,6 +13,7 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
+@Table(name = "contacto")
 public class Contacto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,5 @@ public class Contacto {
     private String nacionalidad;
     private String direccion;
     @OneToOne(mappedBy = "contacto")
-    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 }
