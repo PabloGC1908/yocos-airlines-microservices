@@ -20,8 +20,8 @@ public class Reembolso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "id_pago", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_pago")
     private Pago pago;
 
     @Column(name = "monto_reembolsado", nullable = false, precision = 12, scale = 4)

@@ -36,6 +36,6 @@ public class Pago {
     @JoinColumn(name = "id_metodo_pago")
     private MetodoPago metodoPago;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "pago")
     private Reembolso reembolso;
 }
