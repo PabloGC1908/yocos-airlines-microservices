@@ -1,11 +1,9 @@
 package com.pgc.usuario.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -13,6 +11,7 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 @Table(name = "contacto")
 public class Contacto {
     @Id
@@ -23,8 +22,8 @@ public class Contacto {
     private String telefono;
     @Column(unique = true)
     private Integer dni;
-    @Column(name = "fecha_nacimiento", nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE")
-    private OffsetDateTime fechaNacimiento;
+    @Column(name = "fecha_nacimiento", nullable = false)
+    private LocalDate fechaNacimiento;
     private String nacionalidad;
     private String direccion;
     @OneToOne(mappedBy = "contacto")
