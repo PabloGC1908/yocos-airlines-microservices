@@ -37,7 +37,7 @@ public class UsuarioService {
 
         Usuario usuarioFinal = Usuario.builder()
                 .email(usuario.email())
-                .contrasenia(usuario.contrasenia())
+                .password(usuario.contrasenia())
                 .rol(rol)
                 .contacto(contacto)
                 .fechaCreacion(OffsetDateTime.now())

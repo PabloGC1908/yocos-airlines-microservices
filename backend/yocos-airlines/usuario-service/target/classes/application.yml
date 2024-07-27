@@ -21,3 +21,4 @@ spring:
     url: jdbc:postgresql://localhost:5432/usuario_db
     username: postgres
     password: guerra2350
+
