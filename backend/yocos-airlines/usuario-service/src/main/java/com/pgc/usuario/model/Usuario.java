@@ -20,7 +20,20 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String email;
 
-    private String contrasenia;
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "is_enabled")
+    private Boolean isEnabled;
+
+    @Column(name = "account_non_expired")
+    private Boolean accountNonExpired;
+
+    @Column(name = "credentials_non_expired")
+    private Boolean credentialsNonExpired;
+
+    @Column(name = "account_non_locked")
+    private Boolean accountNonLocked;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_rol")

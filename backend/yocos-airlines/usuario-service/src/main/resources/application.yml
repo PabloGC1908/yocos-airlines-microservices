@@ -13,7 +13,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     open-in-view: true
 
   datasource:
@@ -21,3 +21,4 @@ spring:
     url: jdbc:postgresql://localhost:5432/usuario_db
     username: postgres
     password: guerra2350
+
