@@ -4,7 +4,6 @@ server:
 spring:
   application:
     name: usuario
-
   jpa:
     properties:
       jdbc:
@@ -15,10 +14,14 @@ spring:
     hibernate:
       ddl-auto: create-drop
     open-in-view: true
-
   datasource:
     driverClassName: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/usuario_db
     username: postgres
     password: guerra2350
+
+security:
+  jwt:
+    privateKey: 4a0d045593e609435c401089d91421cca7ce6a47425b6541b84f8ef9546955f4
+    userGenerator: authJwt-Yoquito
 
