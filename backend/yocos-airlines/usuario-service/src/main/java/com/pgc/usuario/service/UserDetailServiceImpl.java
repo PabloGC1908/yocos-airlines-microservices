@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +97,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
     public AuthResponse registerUser(UsuarioFormRequest registerUserRequest) {
         String username = registerUserRequest.email();
         String password = registerUserRequest.contrasenia();
+        ZoneOffset offset = ZoneOffset.of("-05:00");
 
         Contacto contacto = Contacto.builder()
                 .nombre(registerUserRequest.nombre())
@@ -118,16 +120,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
                 .accountNonLocked(true)
                 .rol(rol)
                 .contacto(contacto)
-                .fechaCreacion(OffsetDateTime.now())
-                .ultimoInicioSesion(OffsetDateTime.now())
+                .fechaCreacion(OffsetDateTime.now(offset))
+                .ultimoInicioSesion(OffsetDateTime.now(offset))
                 .build();
 
         Usuario usuarioCreado = usuarioRepository.save(usuarioFinal);
-
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         authorities.add(new SimpleGrantedAuthority("ROLE_" + usuarioCreado.getRol().getRol().name()));
-
         usuarioCreado.getRol().getPermisos()
                 .forEach(permiso -> authorities.add(new SimpleGrantedAuthority(permiso.getPermiso())));
 
