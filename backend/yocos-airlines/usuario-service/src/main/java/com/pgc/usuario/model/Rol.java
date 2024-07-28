@@ -3,7 +3,6 @@ package com.pgc.usuario.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
 
 import java.util.ArrayList;
 import java.util.HashSet;
