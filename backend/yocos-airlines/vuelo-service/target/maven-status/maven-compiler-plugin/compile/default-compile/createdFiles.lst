@@ -1,0 +1,11 @@
+com\pgc\vuelo\models\Vuelo.class
+com\pgc\vuelo\models\EstadoVuelo.class
+com\pgc\vuelo\VueloApplication.class
+com\pgc\vuelo\models\Aerodromo.class
+com\pgc\vuelo\models\Ciudad.class
+com\pgc\vuelo\models\Pais.class
+com\pgc\vuelo\models\Aerolinea.class
+com\pgc\vuelo\models\Escala.class
+com\pgc\vuelo\models\PrecioAsiento.class
+com\pgc\vuelo\models\Avion.class
+com\pgc\vuelo\models\ClaseAsiento.class
