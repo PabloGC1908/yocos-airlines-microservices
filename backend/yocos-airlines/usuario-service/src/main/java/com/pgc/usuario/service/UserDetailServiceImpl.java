@@ -1,5 +1,6 @@
 package com.pgc.usuario.service;
 
+import com.pgc.usuario.dto.mapper.UsuarioRegisterMapper;
 import com.pgc.usuario.dto.request.AuthLoginRequest;
 import com.pgc.usuario.dto.request.UsuarioFormRequest;
 import com.pgc.usuario.dto.response.AuthResponse;
@@ -32,12 +33,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private final UsuarioRepository usuarioRepository;
     private final JwtUtils jwtUtils;
     private final RolService rolService;
+    private final UsuarioRegisterMapper usuarioRegisterMapper;
 
-    public UserDetailServiceImpl(PasswordEncoder passwordEncoder, UsuarioRepository usuarioRepository, JwtUtils jwtUtils, RolService rolService) {
+    public UserDetailServiceImpl(PasswordEncoder passwordEncoder, UsuarioRepository usuarioRepository, JwtUtils jwtUtils, RolService rolService, UsuarioRegisterMapper usuarioRegisterMapper) {
         this.passwordEncoder = passwordEncoder;
         this.usuarioRepository = usuarioRepository;
         this.jwtUtils = jwtUtils;
         this.rolService = rolService;
+        this.usuarioRegisterMapper = usuarioRegisterMapper;
     }
 
     // Nos busca el usuario en la base de datos
@@ -97,34 +100,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
     public AuthResponse registerUser(UsuarioFormRequest registerUserRequest) {
         String username = registerUserRequest.email();
         String password = registerUserRequest.contrasenia();
-        ZoneOffset offset = ZoneOffset.of("-05:00");
 
-        Contacto contacto = Contacto.builder()
-                .nombre(registerUserRequest.nombre())
-                .apellido(registerUserRequest.apellido())
-                .telefono(registerUserRequest.telefono())
-                .dni(registerUserRequest.dni())
-                .fechaNacimiento(registerUserRequest.fechaNacimiento())
-                .nacionalidad(registerUserRequest.nacionalidad())
-                .direccion(registerUserRequest.direccion())
-                .build();
-
-        Rol rol = rolService.findById(1);
-
-        Usuario usuarioFinal = Usuario.builder()
-                .email(username)
-                .password(password)
-                .isEnabled(true)
-                .accountNonExpired(true)
-                .credentialsNonExpired(true)
-                .accountNonLocked(true)
-                .rol(rol)
-                .contacto(contacto)
-                .fechaCreacion(OffsetDateTime.now(offset))
-                .ultimoInicioSesion(OffsetDateTime.now(offset))
-                .build();
-
-        Usuario usuarioCreado = usuarioRepository.save(usuarioFinal);
+        Usuario usuarioCreado = usuarioRepository.save(usuarioRegisterMapper.apply(registerUserRequest));
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         authorities.add(new SimpleGrantedAuthority("ROLE_" + usuarioCreado.getRol().getRol().name()));
