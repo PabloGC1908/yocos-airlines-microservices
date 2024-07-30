@@ -5,6 +5,7 @@ import com.pgc.usuario.model.Contacto;
 import com.pgc.usuario.model.Rol;
 import com.pgc.usuario.model.Usuario;
 import com.pgc.usuario.service.RolService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -14,9 +15,11 @@ import java.util.function.Function;
 @Service
 public class UsuarioRegisterMapper implements Function<UsuarioFormRequest, Usuario> {
     private final RolService rolService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsuarioRegisterMapper(RolService rolService) {
+    public UsuarioRegisterMapper(RolService rolService, PasswordEncoder passwordEncoder) {
         this.rolService = rolService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -37,7 +40,7 @@ public class UsuarioRegisterMapper implements Function<UsuarioFormRequest, Usuar
 
         return Usuario.builder()
                 .email(usuarioFormRequest.email())
-                .password(usuarioFormRequest.contrasenia())
+                .password(passwordEncoder.encode(usuarioFormRequest.contrasenia()))
                 .isEnabled(true)
                 .accountNonExpired(true)
                 .credentialsNonExpired(true)

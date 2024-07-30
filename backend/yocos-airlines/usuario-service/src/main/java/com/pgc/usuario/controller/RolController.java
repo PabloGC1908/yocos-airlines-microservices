@@ -19,7 +19,7 @@ public class RolController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('CREATE')")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     public ResponseEntity<Void> addRol(@RequestBody Rol rol) {
         boolean optionalRol = rolService.saveRol(rol);
 
@@ -30,7 +30,7 @@ public class RolController {
     }
 
     @GetMapping
-    @PreAuthorize("permitAll()")
+    @PreAuthorize("hasRole('ADMINISTRADOR')")
     public ResponseEntity<List<Rol>> getRoles() {
         List<Rol> roles = rolService.findAllRoles();
 
