@@ -4,8 +4,6 @@ import com.pgc.usuario.dto.mapper.UsuarioRegisterMapper;
 import com.pgc.usuario.dto.request.AuthLoginRequest;
 import com.pgc.usuario.dto.request.UsuarioFormRequest;
 import com.pgc.usuario.dto.response.AuthResponse;
-import com.pgc.usuario.model.Contacto;
-import com.pgc.usuario.model.Rol;
 import com.pgc.usuario.model.Usuario;
 import com.pgc.usuario.repository.UsuarioRepository;
 import com.pgc.usuario.utils.JwtUtils;
@@ -22,8 +20,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,14 +28,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final UsuarioRepository usuarioRepository;
     private final JwtUtils jwtUtils;
-    private final RolService rolService;
     private final UsuarioRegisterMapper usuarioRegisterMapper;
 
-    public UserDetailServiceImpl(PasswordEncoder passwordEncoder, UsuarioRepository usuarioRepository, JwtUtils jwtUtils, RolService rolService, UsuarioRegisterMapper usuarioRegisterMapper) {
+    public UserDetailServiceImpl(PasswordEncoder passwordEncoder, UsuarioRepository usuarioRepository,
+                                 JwtUtils jwtUtils, UsuarioRegisterMapper usuarioRegisterMapper) {
         this.passwordEncoder = passwordEncoder;
         this.usuarioRepository = usuarioRepository;
         this.jwtUtils = jwtUtils;
-        this.rolService = rolService;
         this.usuarioRegisterMapper = usuarioRegisterMapper;
     }
 
