@@ -19,7 +19,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 
     @Query("SELECT new com.pgc.usuario.dto.response.PerfilUsuarioResponse(c.nombre, c.apellido, u.email, c.telefono," +
-            " c.dni, c.fechaNacimiento, c.nacionalidad, c.nacionalidad)" +
+            " c.dni, c.fechaNacimiento, c.nacionalidad, c.direccion)" +
             " FROM Usuario u JOIN u.contacto c WHERE u.id=:id")
     PerfilUsuarioResponse findPerfilUsuarioById(@Param("id") Long id);
 }
