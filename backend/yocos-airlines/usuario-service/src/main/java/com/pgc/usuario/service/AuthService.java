@@ -33,7 +33,7 @@ public class AuthService implements UserDetailsService {
         this.usuarioRegisterMapper = usuarioRegisterMapper;
     }
 
-    // Nos devuelve un objet AuthResponse una ves estemos logueados correctamente
+    // Autentica y devuelve un AuthResponse si es que estamos logueados correctamente
     public AuthResponse loginUser(AuthLoginRequest userRequest) {
         String username = userRequest.username();
         String password = userRequest.password();
@@ -61,7 +61,7 @@ public class AuthService implements UserDetailsService {
         return new AuthResponse(usuarioCreado.getContacto().getNombre(), "Usuario registrado exitosamente", accessToken, true);
     }
 
-    // Nos ayuda a autenticar al usuario que quiere loguearse a la aplicacion
+    // Autentica al usuario que quiere loguearse a la aplicacion
     public Authentication authenticate(String username, String password) {
         UserDetails userDetails = this.loadUserByUsername(username);
 
@@ -76,11 +76,11 @@ public class AuthService implements UserDetailsService {
         return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
     }
 
-    // Nos busca el usuario en la base de datos
+    // Busca el usuario en la base de datos
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         return usuarioRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("El usuario: ".concat(username).concat(" no existe")));
+                .orElseThrow(() -> new UsernameNotFoundException("El usuario con correo: " + username + " no existe"));
     }
 }
