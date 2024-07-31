@@ -1,5 +1,6 @@
 package com.pgc.usuario.controller;
 
+import com.pgc.usuario.dto.response.PerfilUsuarioResponse;
 import com.pgc.usuario.model.Usuario;
 import com.pgc.usuario.service.UsuarioService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,8 +23,10 @@ public class UsuarioController {
 
     @GetMapping("/profile")
     @PreAuthorize("hasRole('USUARIO')")
-    public Object getUser(Authentication authentication) {
-        return authentication.getPrincipal();
+    public PerfilUsuarioResponse getUser(Authentication authentication) {
+        Long usuarioId = (Long) authentication.getPrincipal();
+
+        return usuarioService.getPerfilUsuario(usuarioId);
     }
 
     // TODO

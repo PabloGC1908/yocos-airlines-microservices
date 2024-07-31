@@ -1,8 +1,13 @@
 package com.pgc.usuario.service;
 
+import com.pgc.usuario.dto.response.PerfilUsuarioResponse;
+import com.pgc.usuario.model.Contacto;
 import com.pgc.usuario.model.Usuario;
 import com.pgc.usuario.repository.UsuarioRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -14,4 +19,13 @@ public class UsuarioService {
         this.rolService = rolService;
     }
 
+    public PerfilUsuarioResponse getPerfilUsuario(Long id) {
+        Optional<PerfilUsuarioResponse> perfilUsuario = Optional.ofNullable(usuarioRepository.findPerfilUsuarioById(id));
+
+        if (perfilUsuario.isEmpty()) {
+            throw new UsernameNotFoundException("Usuario no encontrado");
+        } else {
+            return perfilUsuario.get();
+        }
+    }
 }
