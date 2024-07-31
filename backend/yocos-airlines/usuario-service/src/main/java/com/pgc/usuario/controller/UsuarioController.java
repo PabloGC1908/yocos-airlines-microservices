@@ -1,10 +1,10 @@
 package com.pgc.usuario.controller;
 
+import com.pgc.usuario.dto.request.UsuarioUpdateRequest;
 import com.pgc.usuario.dto.response.PerfilUsuarioResponse;
-import com.pgc.usuario.model.Usuario;
 import com.pgc.usuario.service.UsuarioService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -23,7 +23,7 @@ public class UsuarioController {
 
     @GetMapping("/profile")
     @PreAuthorize("hasRole('USUARIO')")
-    public PerfilUsuarioResponse getUser(Authentication authentication) {
+    public PerfilUsuarioResponse getUsuario(Authentication authentication) {
         Long usuarioId = (Long) authentication.getPrincipal();
 
         return usuarioService.getPerfilUsuario(usuarioId);
@@ -31,13 +31,19 @@ public class UsuarioController {
 
     // TODO
     @PutMapping("/profile")
-    public ResponseEntity<?> updateUsuario(Authentication authentication, @RequestBody Usuario usuario) {
-        return null;
+    @PreAuthorize("hasRole('USUARIO')")
+    public ResponseEntity<String> updateUsuario(Authentication authentication, @RequestBody UsuarioUpdateRequest usuario) {
+        Long usuarioId = (Long) authentication.getPrincipal();
+        String resultado = usuarioService.updatePerfilUsuario(usuarioId, usuario);
+
+        return new ResponseEntity<>(resultado, HttpStatus.OK);
     }
 
     // TODO: Para el sprint 3
     @GetMapping("/forgot-password")
     public ResponseEntity<?> changePassword(Authentication authentication) {
+        Long usuarioId = (Long) authentication.getPrincipal();
+
         return null;
     }
 }

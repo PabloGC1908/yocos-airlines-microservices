@@ -28,4 +28,19 @@ public class Contacto {
     private String direccion;
     @OneToOne(mappedBy = "contacto")
     private Usuario usuario;
+
+    @Override
+    public String toString() {
+        return "Contacto{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", dni=" + dni +
+                ", fechaNacimiento=" + fechaNacimiento +
+                ", nacionalidad='" + nacionalidad + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", usuario=" + usuario +
+                '}';
+    }
 }
