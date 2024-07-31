@@ -1,7 +1,7 @@
 package com.pgc.usuario.config;
 
 import com.pgc.usuario.config.filter.JwtTokenValidator;
-import com.pgc.usuario.service.UserDetailServiceImpl;
+import com.pgc.usuario.service.AuthService;
 import com.pgc.usuario.utils.JwtUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -70,7 +70,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(UserDetailServiceImpl userDetailService) {
+    public AuthenticationProvider authenticationProvider(AuthService userDetailService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
         provider.setUserDetailsService(userDetailService);

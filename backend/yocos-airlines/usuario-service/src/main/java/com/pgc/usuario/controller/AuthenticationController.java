@@ -3,7 +3,7 @@ package com.pgc.usuario.controller;
 import com.pgc.usuario.dto.request.AuthLoginRequest;
 import com.pgc.usuario.dto.request.UsuarioFormRequest;
 import com.pgc.usuario.dto.response.AuthResponse;
-import com.pgc.usuario.service.UserDetailServiceImpl;
+import com.pgc.usuario.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthenticationController {
-    private final UserDetailServiceImpl userDetailsService;
+    private final AuthService userDetailsService;
 
-    public AuthenticationController(UserDetailServiceImpl userDetailsService) {
+    public AuthenticationController(AuthService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 

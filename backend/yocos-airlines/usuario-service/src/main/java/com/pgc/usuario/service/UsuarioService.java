@@ -1,5 +1,6 @@
 package com.pgc.usuario.service;
 
+import com.pgc.usuario.model.Usuario;
 import com.pgc.usuario.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,4 +13,5 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
         this.rolService = rolService;
     }
+
 }
