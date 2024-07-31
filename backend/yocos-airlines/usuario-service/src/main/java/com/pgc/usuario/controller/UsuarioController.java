@@ -27,7 +27,7 @@ public class UsuarioController {
         return null;
     }
 
-    // TODO
+    // TODO: Para el sprint 3
     @GetMapping("/forgot-password/{id}")
     public ResponseEntity<?> changePassword(@PathVariable Integer id) {
         return null;

@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.pgc.usuario.model.Usuario;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,7 +25,7 @@ public class JwtUtils {
     @Value("${security.jwt.userGenerator}")
     private String userGenerator;
 
-    public String generateToken(Authentication authentication) {
+    public String generateToken(Authentication authentication, Long userId) {
         Algorithm algoritmo = Algorithm.HMAC256(privateKey);
         String usuarioAutenticado = authentication.getPrincipal().toString();
         String autorizaciones = authentication.getAuthorities().stream()
@@ -35,6 +36,7 @@ public class JwtUtils {
                 .withIssuer(this.userGenerator)
                 .withSubject(usuarioAutenticado)
                 .withClaim("authorities", autorizaciones)
+                .withClaim("userId", userId)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 1800000))
                 .withJWTId(UUID.randomUUID().toString())
