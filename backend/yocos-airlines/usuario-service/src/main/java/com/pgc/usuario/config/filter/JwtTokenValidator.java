@@ -26,11 +26,13 @@ public class JwtTokenValidator extends OncePerRequestFilter {
         this.jwtUtils = jwtUtils;
     }
 
+    /**
+     * Filtro para procesar el token JWT de autenticación en cada solicitud.
+     */
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,
                                     @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
-        // TODO: Por que no usarlo con el string "authorization"?
         String jwtToken = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         // Los tokens siempre se envian con bearer
@@ -39,11 +41,14 @@ public class JwtTokenValidator extends OncePerRequestFilter {
 
             DecodedJWT decodedJWT = jwtUtils.verifyToken(jwtToken);
 
-            String username = decodedJWT.getSubject();
-            String stringAuthorities = jwtUtils.getEspecificClaim(decodedJWT, "authorities").asString();
+            // Obtiene el ID del usuario del token
+            Long username = decodedJWT.getClaim("userId").asLong();
 
+            // Obtiene las autoridades del token
+            String stringAuthorities = jwtUtils.getEspecificClaim(decodedJWT, "authorities").asString();
             Collection<? extends GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList(stringAuthorities);
 
+            // Establece el contexto de seguridad con el usuario autenticado
             SecurityContext context = SecurityContextHolder.getContext();
             Authentication authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
             context.setAuthentication(authentication);

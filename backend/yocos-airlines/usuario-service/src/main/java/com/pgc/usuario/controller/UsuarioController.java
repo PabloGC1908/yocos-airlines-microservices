@@ -1,12 +1,16 @@
 package com.pgc.usuario.controller;
 
+import com.pgc.usuario.model.Usuario;
 import com.pgc.usuario.service.UsuarioService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
+@RequestMapping("/api/v1/users")
 @Slf4j
 public class UsuarioController {
     private final UsuarioService usuarioService;
@@ -15,21 +19,22 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    // TODO
-    @GetMapping("/profile/{id}")
-    public ResponseEntity<?> getUsuario(@PathVariable Integer id) {
-        return null;
+
+    @GetMapping("/profile")
+    @PreAuthorize("hasRole('USUARIO')")
+    public Object getUser(Authentication authentication) {
+        return authentication.getPrincipal();
     }
 
     // TODO
-    @PutMapping("/profile/{id}")
-    public ResponseEntity<?> updateUsuario(@PathVariable Integer id) {
+    @PutMapping("/profile")
+    public ResponseEntity<?> updateUsuario(Authentication authentication, @RequestBody Usuario usuario) {
         return null;
     }
 
     // TODO: Para el sprint 3
-    @GetMapping("/forgot-password/{id}")
-    public ResponseEntity<?> changePassword(@PathVariable Integer id) {
+    @GetMapping("/forgot-password")
+    public ResponseEntity<?> changePassword(Authentication authentication) {
         return null;
     }
 }
