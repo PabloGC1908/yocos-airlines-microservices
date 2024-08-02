@@ -1,5 +1,6 @@
 package com.pgc.vuelo.controller;
 
+import com.pgc.vuelo.models.Vuelo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,11 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/flights")
 public class VueloController {
 
+    // TODO: Implementar endpoint GET /flights/search.
     public ResponseEntity<?> getVuelos() {
-
+        return null;
     }
 
+    // TODO: Implementar endpoint GET /flights/{flightId}.
     public ResponseEntity<?> getVueloById(int id) {
+        return null;
+    }
 
+    // TODO: Implementar endpoint POST /flights para añadir un vuelo.
+    public ResponseEntity<?> createVuelo(Vuelo vuelo) {
+        return null;
     }
 }
