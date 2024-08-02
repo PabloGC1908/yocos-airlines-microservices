@@ -37,4 +37,7 @@ public class Aeropuerto {
     @OneToMany(mappedBy = "aeropuertoDestino")
     private List<Escala> escalas_destino;
 
+    @OneToMany(mappedBy = "aeropuerto")
+    private List<Aerodromo> aerodromos;
+
 }
