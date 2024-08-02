@@ -29,6 +29,10 @@ public class Vuelo {
     @Column(name = "es_viaje_ida")
     private Boolean esViajeIda;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_aerolinea")
+    private Aerolinea aerolinea;
+
     @OneToMany(mappedBy = "vuelo", fetch = FetchType.EAGER)
     private List<PrecioAsiento> preciosAsientos;
 
