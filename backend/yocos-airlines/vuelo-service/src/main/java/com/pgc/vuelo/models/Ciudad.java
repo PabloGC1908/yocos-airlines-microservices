@@ -27,5 +27,5 @@ public class Ciudad {
     private Pais pais;
 
     @OneToMany(mappedBy = "ciudad", fetch = FetchType.LAZY)
-    private List<Aerolinea> aerolineas;
+    private List<Aeropuerto> aeropuertos;
 }

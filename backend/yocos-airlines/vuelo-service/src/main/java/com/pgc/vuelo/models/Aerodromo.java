@@ -19,7 +19,7 @@ public class Aerodromo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_aerolinea")
-    private Aerolinea aerolinea;
+    private Aeropuerto aeropuerto;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_avion")
