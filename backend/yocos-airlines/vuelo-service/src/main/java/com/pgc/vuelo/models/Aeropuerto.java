@@ -14,7 +14,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aerolinea {
+public class Aeropuerto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -31,10 +31,10 @@ public class Aerolinea {
     @Column(name = "zona_horaria")
     private String zonaHoraria;
 
-    @OneToMany(mappedBy = "aerolineaEmbarque")
+    @OneToMany(mappedBy = "aeropuertoEmbarque")
     private List<Escala> escalas_embarque;
 
-    @OneToMany(mappedBy = "aerolineaDestino")
+    @OneToMany(mappedBy = "aeropuertoDestino")
     private List<Escala> escalas_destino;
 
 }

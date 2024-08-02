@@ -21,11 +21,11 @@ public class Escala {
 
     @ManyToOne
     @JoinColumn(name = "id_aerolinea_embarque", nullable = false)
-    private Aerolinea aerolineaEmbarque;
+    private Aeropuerto aeropuertoEmbarque;
 
     @ManyToOne
     @JoinColumn(name = "id_aerolinea_destino", nullable = false)
-    private Aerolinea aerolineaDestino;
+    private Aeropuerto aeropuertoDestino;
 
     @ManyToOne
     @JoinColumn(name = "id_avion", nullable = false)
