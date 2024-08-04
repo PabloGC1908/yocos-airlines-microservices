@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "vuelo")
+@Table(name = "aerolinea")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,6 +22,6 @@ public class Aerolinea {
     @Column(name = "aerolinea", nullable = false, unique = true)
     private String aerolinea;
 
-    @OneToMany(mappedBy = "aerolinea")
+    @OneToMany(mappedBy = "aerolinea", fetch = FetchType.LAZY)
     private List<Vuelo> vuelos;
 }

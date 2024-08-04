@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "aerolinea")
+@Table(name = "aeropuerto")
 @Getter
 @Setter
 @AllArgsConstructor

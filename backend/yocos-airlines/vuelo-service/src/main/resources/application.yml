@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: usuario
+    name: vuelo
 
   jpa:
     properties:
