@@ -1,5 +1,6 @@
 package com.pgc.vuelo.controller;
 
+import com.pgc.vuelo.dto.request.AerolineaRequest;
 import com.pgc.vuelo.dto.response.AerolineaResponse;
 import com.pgc.vuelo.models.Aerolinea;
 import com.pgc.vuelo.service.AerolineaService;
@@ -18,10 +19,9 @@ public class AerolineaController {
         this.aerolineaService = aerolineaService;
     }
 
-    // TODO: Implementar endpoint GET /airlines.
     @GetMapping
     public ResponseEntity<List<AerolineaResponse>> getAerolineas() {
-        List<AerolineaResponse> aerolineas = aerolineaService.findAll();
+        List<AerolineaResponse> aerolineas = aerolineaService.findAllAerolineas();
 
         if (aerolineas.isEmpty())
             return new ResponseEntity<>(aerolineas, HttpStatus.NO_CONTENT);
@@ -30,27 +30,28 @@ public class AerolineaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAerolinea(@PathVariable Long id) {
-        List<Aerolinea> aerolineas = null;
-
-        return null;
+    public ResponseEntity<AerolineaResponse> getAerolinea(@PathVariable(name = "id") Integer id) {
+        return new ResponseEntity<>(aerolineaService.findAerolineaById(id), HttpStatus.OK);
     }
 
-    // TODO: Implementar endpoint POST /airlines.
     @PostMapping
-    public ResponseEntity<?> createAerolinea(Aerolinea aerolinea) {
-        return null;
+    public ResponseEntity<String> createAerolinea(@RequestBody AerolineaRequest aerolineaRequest) {
+        String response = aerolineaService.registerAerolinea(aerolineaRequest);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    // TODO: Implementar endpoint PUT /airlines/{airlineId}.
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAerolinea(@PathVariable Long id, Aerolinea aerolinea) {
-        return null;
+    public ResponseEntity<?> updateAerolinea(@PathVariable(name = "id") Integer id, @RequestBody AerolineaRequest aerolineaRequest) {
+        String response = aerolineaService.updateAerolinea(id, aerolineaRequest);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    // TODO: Implementar endpoint DELETE /airlines/{airlineId}.
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAerolinea(@PathVariable Long id) {
-        return null;
+    public ResponseEntity<Void> deleteAerolinea(@PathVariable("id") Integer id) {
+        aerolineaService.deleteAerolinea(id);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
