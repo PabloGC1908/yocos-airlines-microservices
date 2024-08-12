@@ -20,6 +20,10 @@ public class Escala {
     private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "id_vuelo", nullable = false)
+    private Vuelo vuelo;
+
+    @ManyToOne
     @JoinColumn(name = "id_aerolinea_embarque", nullable = false)
     private Aeropuerto aeropuertoEmbarque;
 
@@ -30,10 +34,6 @@ public class Escala {
     @ManyToOne
     @JoinColumn(name = "id_avion", nullable = false)
     private Avion avion;
-
-    @ManyToOne
-    @JoinColumn(name = "id_vuelo", nullable = false)
-    private Vuelo vuelo;
 
     @Column(name = "fecha_embarque", columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = false)
     private OffsetDateTime fechaEmbarque;
