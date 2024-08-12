@@ -33,6 +33,12 @@ public class Vuelo {
     @JoinColumn(name = "id_aerolinea")
     private Aerolinea aerolinea;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Ciudad paisEmbarque;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Ciudad paisDestino;
+
     @OneToMany(mappedBy = "vuelo", fetch = FetchType.EAGER)
     private List<PrecioAsiento> preciosAsientos;
 

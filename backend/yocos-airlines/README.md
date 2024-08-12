@@ -1,4 +1,3 @@
 # Backend
 
-
-![Base de datos v1.11](img.png)
+![Base de datos v2.0](img.png)

@@ -1,27 +1,29 @@
 package com.pgc.vuelo.controller;
 
-import com.pgc.vuelo.dto.request.FormularioVueloRequest;
-import com.pgc.vuelo.models.Vuelo;
+import com.pgc.vuelo.dto.request.VueloRequest;
+import com.pgc.vuelo.service.VueloService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/flights")
 public class VueloController {
 
-    // TODO: Implementar endpoint GET /flights/search.
+    @GetMapping
     public ResponseEntity<?> getVuelos() {
-        return null;
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     // TODO: Implementar endpoint GET /flights/{flightId}.
-    public ResponseEntity<?> getVueloById(Integer id) {
+    @GetMapping("/{flightId}")
+    public ResponseEntity<?> getVueloById(@PathVariable(name = "flightId") Integer id) {
         return null;
     }
 
     // TODO: Implementar endpoint POST /flights para añadir un vuelo.
-    public ResponseEntity<?> createVuelo(FormularioVueloRequest formularioVuelo) {
+    @PostMapping
+    public ResponseEntity<?> createVuelo(VueloRequest vueloRequest) {
         return null;
     }
 }

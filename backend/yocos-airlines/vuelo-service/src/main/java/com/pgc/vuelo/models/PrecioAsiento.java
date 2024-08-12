@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "precio_asiento")
 @Getter
@@ -26,7 +28,7 @@ public class PrecioAsiento {
     private ClaseAsiento claseAsiento;
 
     @Column(name = "precio_asiento")
-    private Float precioAsiento;
+    private BigDecimal precioAsiento;
 
     @Column(name = "cantidad_asientos")
     private Integer cantidadAsientos;
