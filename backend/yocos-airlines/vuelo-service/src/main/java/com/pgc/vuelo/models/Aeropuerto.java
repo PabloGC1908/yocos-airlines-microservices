@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "aerolinea")
+@Table(name = "aeropuerto")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,7 +17,8 @@ import java.util.List;
 public class Aeropuerto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+
     private String aerolinea;
 
     @ManyToOne(fetch = FetchType.EAGER)

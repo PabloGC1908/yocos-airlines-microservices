@@ -1,10 +1,7 @@
 package com.pgc.vuelo.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
@@ -12,12 +9,17 @@ import java.time.OffsetDateTime;
 @Table(name = "escala")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 @Setter
 public class Escala {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_vuelo", nullable = false)
+    private Vuelo vuelo;
 
     @ManyToOne
     @JoinColumn(name = "id_aerolinea_embarque", nullable = false)
@@ -30,10 +32,6 @@ public class Escala {
     @ManyToOne
     @JoinColumn(name = "id_avion", nullable = false)
     private Avion avion;
-
-    @ManyToOne
-    @JoinColumn(name = "id_vuelo", nullable = false)
-    private Vuelo vuelo;
 
     @Column(name = "fecha_embarque", columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = false)
     private OffsetDateTime fechaEmbarque;

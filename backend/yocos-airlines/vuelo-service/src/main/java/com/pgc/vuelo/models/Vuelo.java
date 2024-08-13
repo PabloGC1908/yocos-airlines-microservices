@@ -1,10 +1,7 @@
 package com.pgc.vuelo.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,30 +9,43 @@ import java.util.List;
 @Table(name = "vuelo")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vuelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "asientos_disponibles")
+    @Column(name = "asientos_totales", nullable = false)
+    private Integer asientosTotales;
+
+    @Column(name = "asientos_disponibles", nullable = false)
     private Integer asientosDisponibles;
 
-    @Column(name = "estado_vuelo")
+    @Column(name = "estado_vuelo", nullable = false)
     @Enumerated(EnumType.STRING)
     private EstadoVuelo estadoVuelo;
-
-    @Column(name = "es_viaje_ida")
-    private Boolean esViajeIda;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_aerolinea")
     private Aerolinea aerolinea;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_ciudad_embarque", nullable = false)
+    private Ciudad ciudadEmbarque;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_ciudad_destino", nullable = false)
+    private Ciudad ciudadDestino;
+
     @OneToMany(mappedBy = "vuelo", fetch = FetchType.EAGER)
-    private List<PrecioAsiento> preciosAsientos;
+    private List<Asiento> asientos;
 
     @OneToMany(mappedBy = "vuelo", fetch = FetchType.EAGER)
     private List<Escala> escalas;
+
+    @OneToOne
+    @JoinColumn(name = "id_vuelo_ida")
+    private Vuelo vueloIda;
 }

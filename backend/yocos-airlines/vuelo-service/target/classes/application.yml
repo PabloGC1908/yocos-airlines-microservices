@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: usuario
+    name: vuelo
 
   jpa:
     properties:
@@ -13,7 +13,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     open-in-view: true
 
   # Database

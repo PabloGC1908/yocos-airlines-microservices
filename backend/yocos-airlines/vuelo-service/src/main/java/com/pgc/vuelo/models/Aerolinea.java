@@ -1,15 +1,13 @@
 package com.pgc.vuelo.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
+@Builder
 @Entity
-@Table(name = "vuelo")
+@Table(name = "aerolinea")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,11 +15,11 @@ import java.util.List;
 public class Aerolinea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "aerolinea", nullable = false, unique = true)
     private String aerolinea;
 
-    @OneToMany(mappedBy = "aerolinea")
+    @OneToMany(mappedBy = "aerolinea", fetch = FetchType.LAZY)
     private List<Vuelo> vuelos;
 }
