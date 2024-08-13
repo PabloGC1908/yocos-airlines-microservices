@@ -1,10 +1,7 @@
 package com.pgc.vuelo.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +9,7 @@ import java.util.List;
 @Table(name = "aeropuerto")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Aeropuerto {
@@ -19,7 +17,7 @@ public class Aeropuerto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String aerolinea;
+    private String aeropuerto;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_ciudad")
@@ -40,5 +38,6 @@ public class Aeropuerto {
 
     @OneToMany(mappedBy = "aeropuerto")
     private List<Aerodromo> aerodromos;
+
 
 }
