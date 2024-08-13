@@ -2,6 +2,7 @@ package com.pgc.vuelo.controller;
 
 import com.pgc.vuelo.dto.request.VueloRequest;
 import com.pgc.vuelo.service.VueloService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class VueloController {
 
     // TODO: Implementar endpoint POST /flights para añadir un vuelo.
     @PostMapping
-    public ResponseEntity<String> createVuelo(@RequestBody VueloRequest vueloRequest) {
+    public ResponseEntity<String> createVuelo(@RequestBody @Valid VueloRequest vueloRequest) {
         String response = vueloService.registerVuelo(vueloRequest);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
