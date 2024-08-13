@@ -1,10 +1,7 @@
 package com.pgc.vuelo.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,12 +9,13 @@ import java.util.List;
 @Table(name = "vuelo")
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vuelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "asientos_totales", nullable = false)
     private Integer asientosTotales;
@@ -34,13 +32,15 @@ public class Vuelo {
     private Aerolinea aerolinea;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Ciudad paisEmbarque;
+    @JoinColumn(name = "id_ciudad_embarque", nullable = false)
+    private Ciudad ciudadEmbarque;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Ciudad paisDestino;
+    @JoinColumn(name = "id_ciudad_destino", nullable = false)
+    private Ciudad ciudadDestino;
 
     @OneToMany(mappedBy = "vuelo", fetch = FetchType.EAGER)
-    private List<PrecioAsiento> preciosAsientos;
+    private List<Asiento> asientos;
 
     @OneToMany(mappedBy = "vuelo", fetch = FetchType.EAGER)
     private List<Escala> escalas;

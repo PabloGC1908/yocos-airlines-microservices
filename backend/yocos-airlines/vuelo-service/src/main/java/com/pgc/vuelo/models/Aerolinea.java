@@ -15,7 +15,7 @@ import java.util.List;
 public class Aerolinea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "aerolinea", nullable = false, unique = true)
     private String aerolinea;

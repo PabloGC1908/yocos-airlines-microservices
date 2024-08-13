@@ -2,9 +2,9 @@ package com.pgc.vuelo.service;
 
 import com.pgc.vuelo.dto.request.AerolineaRequest;
 import com.pgc.vuelo.dto.response.AerolineaResponse;
+import com.pgc.vuelo.exceptions.classes.AerolineaNotFoundException;
 import com.pgc.vuelo.models.Aerolinea;
 import com.pgc.vuelo.repository.AerolineaRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +23,20 @@ public class AerolineaService {
         return aerolineaRepository.findAllAerolineas();
     }
 
-    public AerolineaResponse findAerolineaById(int id) {
+    public AerolineaResponse findAerolineaResponseById(long id) {
         Optional<AerolineaResponse> aerolinea = Optional.ofNullable(aerolineaRepository.findAerolineaById(id));
 
         if(aerolinea.isEmpty())
-            throw new EntityNotFoundException("Aerolinea con id " + id + " no encontrada");
+            throw new AerolineaNotFoundException("Aerolinea con id " + id + " no encontrada");
 
         return aerolinea.get();
+    }
+
+    public Aerolinea findAerolineaById(long id) {
+        Optional<Aerolinea> aerolinea = aerolineaRepository.findById(id);
+
+        return aerolinea.orElseThrow(() ->
+                new AerolineaNotFoundException("Aerolinea con id " + id + " no encontrado."));
     }
 
     @Transactional
@@ -44,11 +51,11 @@ public class AerolineaService {
     }
 
     @Transactional
-    public String updateAerolinea(int id, AerolineaRequest aerolineaRequest) {
+    public String updateAerolinea(long id, AerolineaRequest aerolineaRequest) {
         Optional<Aerolinea> aerolineaOptional = aerolineaRepository.findById(id);
 
         if (aerolineaOptional.isEmpty())
-            throw new EntityNotFoundException("Aerolinea " + id + " no encontrada");
+            throw new AerolineaNotFoundException("Aerolinea " + id + " no encontrada");
 
         Aerolinea aerolinea = aerolineaOptional.get();
 
@@ -58,11 +65,11 @@ public class AerolineaService {
     }
 
     @Transactional
-    public void deleteAerolinea(int id) {
+    public void deleteAerolinea(long id) {
         Optional<Aerolinea> aerolineaOptional = aerolineaRepository.findById(id);
 
         if (aerolineaOptional.isEmpty())
-            throw new EntityNotFoundException("Aerolinea " + id + " no encontrada");
+            throw new AerolineaNotFoundException("Aerolinea " + id + " no encontrada");
 
         aerolineaRepository.delete(aerolineaOptional.get());
     }

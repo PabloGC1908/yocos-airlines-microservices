@@ -17,7 +17,7 @@ import java.util.List;
 public class Ciudad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "ciudad")
     private String ciudad;
@@ -28,4 +28,10 @@ public class Ciudad {
 
     @OneToMany(mappedBy = "ciudad", fetch = FetchType.LAZY)
     private List<Aeropuerto> aeropuertos;
+
+    @OneToMany(mappedBy = "ciudadDestino")
+    private List<Vuelo> vuelosCiudadDestino;
+
+    @OneToMany(mappedBy = "ciudadEmbarque")
+    private List<Vuelo> vuelosCiudadEmbarque;
 }

@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/flights")
 public class VueloController {
+    private final VueloService vueloService;
+
+    public VueloController(VueloService vueloService) {
+        this.vueloService = vueloService;
+    }
+
 
     @GetMapping
     public ResponseEntity<?> getVuelos() {
@@ -23,7 +29,9 @@ public class VueloController {
 
     // TODO: Implementar endpoint POST /flights para añadir un vuelo.
     @PostMapping
-    public ResponseEntity<?> createVuelo(VueloRequest vueloRequest) {
-        return null;
+    public ResponseEntity<String> createVuelo(@RequestBody VueloRequest vueloRequest) {
+        String response = vueloService.registerVuelo(vueloRequest);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

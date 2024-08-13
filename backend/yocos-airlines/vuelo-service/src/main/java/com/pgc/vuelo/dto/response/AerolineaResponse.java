@@ -1,6 +1,6 @@
 package com.pgc.vuelo.dto.response;
 
 public record AerolineaResponse(
-        Integer id,
+        Long id,
         String aerolinea) {
 }

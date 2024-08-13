@@ -4,7 +4,7 @@ import com.pgc.vuelo.models.ClaseAsiento;
 
 import java.math.BigDecimal;
 
-public record PrecioAsientosRequest(
+public record AsientoRequest(
     ClaseAsiento claseAsiento,
     Integer cantidadAsientos,
     BigDecimal precio

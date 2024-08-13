@@ -1,3 +1,3 @@
 # Backend
 
-![Base de datos v2.0](img.png)
+![Base de datos v2.2](img.png)

@@ -1,10 +1,7 @@
 package com.pgc.vuelo.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
@@ -12,6 +9,7 @@ import java.time.OffsetDateTime;
 @Table(name = "escala")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 @Setter
 public class Escala {

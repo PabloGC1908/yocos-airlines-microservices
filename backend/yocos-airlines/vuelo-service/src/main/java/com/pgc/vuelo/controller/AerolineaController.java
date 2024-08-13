@@ -2,7 +2,6 @@ package com.pgc.vuelo.controller;
 
 import com.pgc.vuelo.dto.request.AerolineaRequest;
 import com.pgc.vuelo.dto.response.AerolineaResponse;
-import com.pgc.vuelo.models.Aerolinea;
 import com.pgc.vuelo.service.AerolineaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,7 @@ public class AerolineaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AerolineaResponse> getAerolinea(@PathVariable(name = "id") Integer id) {
-        return new ResponseEntity<>(aerolineaService.findAerolineaById(id), HttpStatus.OK);
+        return new ResponseEntity<>(aerolineaService.findAerolineaResponseById(id), HttpStatus.OK);
     }
 
     @PostMapping
