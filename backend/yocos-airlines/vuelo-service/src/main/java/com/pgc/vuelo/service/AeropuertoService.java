@@ -1,6 +1,8 @@
 package com.pgc.vuelo.service;
 
 import com.pgc.vuelo.dto.request.AeropuertoRequest;
+import com.pgc.vuelo.dto.response.AeropuertoResponse;
+import com.pgc.vuelo.dto.response.CiudadResponse;
 import com.pgc.vuelo.exceptions.classes.AeropuertoNotFoundException;
 import com.pgc.vuelo.models.Aeropuerto;
 import com.pgc.vuelo.models.Ciudad;
@@ -8,6 +10,7 @@ import com.pgc.vuelo.repository.AeropuertoRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,10 +25,8 @@ public class AeropuertoService {
         this.aeropuertoRepository = aeropuertoRepository;
     }
 
-    public Aeropuerto findAeropuertoById(long id) {
-        Optional<Aeropuerto> aeropuerto = aeropuertoRepository.findById(id);
-
-        return aeropuerto.orElseThrow(() -> new AeropuertoNotFoundException("Aeropuerto con id: " + id + " no existe"));
+    public List<AeropuertoResponse> getAeropuertos() {
+        return aeropuertoRepository.findAllAeropuertoResponse();
     }
 
     @Transactional
@@ -43,5 +44,18 @@ public class AeropuertoService {
         aeropuertoRepository.save(aeropuerto);
 
         return "Se registro el aeropuerto exitosamente";
+    }
+
+
+    public String deleteAeropuerto(long id) {
+        aeropuertoRepository.deleteById(id);
+
+        return "Se elimino el aeropuerto exitosamente";
+    }
+
+    public Aeropuerto findAeropuertoById(long id) {
+        Optional<Aeropuerto> aeropuerto = aeropuertoRepository.findById(id);
+
+        return aeropuerto.orElseThrow(() -> new AeropuertoNotFoundException("Aeropuerto con id: " + id + " no existe"));
     }
 }

@@ -39,4 +39,5 @@ public class Aeropuerto {
     @OneToMany(mappedBy = "aeropuerto")
     private List<Aerodromo> aerodromos;
 
+
 }
