@@ -1,24 +1,6 @@
-server:
-  port: 8084
-
 spring:
   application:
-    name: vuelo
+    name: vuelo-service
 
-  jpa:
-    properties:
-      jdbc:
-        time_zone: utc
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-    hibernate:
-      ddl-auto: create-drop
-    open-in-view: true
-
-  # Database
-  datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/vuelo_db
-    username: postgres
-    password: guerra2350
+  config:
+    import: optional:configserver:http://localhost:8888
