@@ -1,2 +1,17 @@
 <app-navbar />
 <p>vuelos-page works!</p>
+
+<mat-table [dataSource]="vuelos">
+
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef > No. </th>
+    <td mat-cell *matCellDef="let vuelo">{{vuelo.id}}</td>
+  </ng-container>
+  <ng-container matColumnDef="aerolinea">
+    <th mat-header-cell *matHeaderCellDef > Aerolinea </th>
+    <td mat-cell *matCellDef="let vuelo">{{vuelo.aerolinea}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columns" ></tr>
+  <tr mat-row *matRowDef="let row; columns: columns" ></tr>
+</mat-table>
