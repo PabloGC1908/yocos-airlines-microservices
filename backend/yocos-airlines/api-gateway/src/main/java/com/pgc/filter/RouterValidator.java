@@ -9,9 +9,10 @@ import java.util.function.Predicate;
 @Component
 public class RouterValidator {
 
+    // Las rutas de esta lista no van a necesitar de tokens
     public static final List<String> openApiEndpoints = List.of(
-        "/api/v1/auth/log-in",
-        "/api/v1/auth/sign-up",
+            "/api/v1/auth/log-in",
+            "/api/v1/auth/sign-up",
             "/eureka"
     );
 
