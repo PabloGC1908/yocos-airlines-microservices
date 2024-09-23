@@ -5,8 +5,13 @@ spring:
   config:
     import: optional:configserver:http://localhost:8888
 
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    bootstrap-servers: localhost:9092
+
+
 security:
   jwt:
     privateKey: 4a0d045593e609435c401089d91421cca7ce6a47425b6541b84f8ef9546955f4
     userGenerator: authJwt-Yoquito
-
